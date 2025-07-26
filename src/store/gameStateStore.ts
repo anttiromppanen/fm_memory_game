@@ -1,9 +1,3 @@
-/**
- * IN PROGRESS
- * This file is not yet complete and is a work in progress.
- * It is not ready for production use.
- */
-
 import { create } from "zustand";
 import { MAX_PLAYERS, PLAYERS_SET, type PlayersType } from "../const/const";
 import { isValidNumOfPlayers, isValidPlayer } from "../helpers/validation";
@@ -17,7 +11,7 @@ interface IGameStateStore {
 	updatePlayerScore: (player: PlayersType) => void;
 }
 
-const useGameStateStore = create<IGameStateStore>((set) => ({
+const useGameStateStore = create<IGameStateStore>((set, get) => ({
 	gameScore: { player1: 0 },
 	gameBoard: [],
 
@@ -43,7 +37,10 @@ const useGameStateStore = create<IGameStateStore>((set) => ({
 	},
 
 	updatePlayerScore: (player: PlayersType) => {
-		if (!isValidPlayer(player, PLAYERS_SET)) {
+		const state = get();
+
+		// Validate player before updating score
+		if (!isValidPlayer(player, PLAYERS_SET) || !(player in state.gameScore)) {
 			return;
 		}
 
