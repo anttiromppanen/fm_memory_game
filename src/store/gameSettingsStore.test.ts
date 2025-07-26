@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import {
 	GRID_SIZES,
+	type GridSizeType,
 	ICON_THEMES,
 	type IconThemeType,
 	MAX_PLAYERS,
@@ -73,7 +74,9 @@ describe("Game Settings Store", () => {
 
 	it("should fail when setting invalid grid size", () => {
 		const invalidGridSize = 100; // Assuming 100 is not in GRID_SIZES
-		useGameSettingsStore.getState().setGridSize(invalidGridSize);
+		useGameSettingsStore
+			.getState()
+			.setGridSize(invalidGridSize as GridSizeType);
 		expect(useGameSettingsStore.getState().gridSize).toBe(GRID_SIZES[0]); // Default value should remain unchanged
 	});
 });

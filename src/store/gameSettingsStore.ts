@@ -2,11 +2,12 @@ import { create } from "zustand";
 import {
 	GRID_SIZES,
 	GRID_SIZES_SET,
+	type GridSizeType,
 	ICON_THEMES,
 	ICON_THEMES_SET,
+	type IconThemeType,
 	MAX_PLAYERS,
 } from "../const/const";
-import type { GridSizeType, IconThemeType } from "../const/types";
 import {
 	isValidGridSize,
 	isValidIconTheme,

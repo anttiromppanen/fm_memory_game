@@ -5,14 +5,22 @@
  */
 
 import { create } from "zustand";
-import type { PlayerType } from "../const/types";
+import type { PlayersType } from "../const/const";
 
 interface IGameStateStore {
-	gameScore: Partial<Record<PlayerType, number>>;
+	gameScore: Partial<Record<PlayersType, number>>;
+	gameBoard: string[][];
 
 	setGameScore: (numOfPlayers: number) => void;
 	resetGameState: () => void;
-	addPlayerScore: (player: PlayerType) => void;
+	addPlayerScore: (player: PlayersType) => void;
 }
 
-const useGameStateStore = create((set) => ({}));
+const useGameStateStore = create<IGameStateStore>((set) => ({
+	gameScore: { player1: 0 },
+	gameBoard: [],
+
+	setGameScore: (numOfPlayers: number) => {},
+	resetGameState: () => set({ gameScore: { player1: 0 } }),
+	addPlayerScore: (player: PlayersType) => {},
+}));
