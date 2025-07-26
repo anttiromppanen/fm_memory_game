@@ -1,5 +1,10 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { GRID_SIZES, ICON_THEMES, MAX_PLAYERS } from "../const/const";
+import {
+	GRID_SIZES,
+	ICON_THEMES,
+	type IconThemeType,
+	MAX_PLAYERS,
+} from "../const/const";
 import useGameSettingsStore from "./gameSettingsStore";
 
 describe("Game Settings Store", () => {
@@ -44,5 +49,31 @@ describe("Game Settings Store", () => {
 
 		useGameSettingsStore.getState().setNumOfPlayers(invalidMaxNumOfPlayers);
 		expect(useGameSettingsStore.getState().numOfPlayers).toBe(1); // Default value should remain unchanged
+	});
+
+	it("should set icon theme", () => {
+		const newIconTheme = ICON_THEMES[1];
+		useGameSettingsStore.getState().setIconTheme(newIconTheme);
+		expect(useGameSettingsStore.getState().iconTheme).toBe(newIconTheme);
+	});
+
+	it("should fail when setting invalid icon theme", () => {
+		const invalidIconTheme = "nonExistentTheme";
+		useGameSettingsStore
+			.getState()
+			.setIconTheme(invalidIconTheme as IconThemeType);
+		expect(useGameSettingsStore.getState().iconTheme).toBe(ICON_THEMES[0]); // Default value should remain unchanged
+	});
+
+	it("should set grid size", () => {
+		const newGridSize = GRID_SIZES[1];
+		useGameSettingsStore.getState().setGridSize(newGridSize);
+		expect(useGameSettingsStore.getState().gridSize).toBe(newGridSize);
+	});
+
+	it("should fail when setting invalid grid size", () => {
+		const invalidGridSize = 100; // Assuming 100 is not in GRID_SIZES
+		useGameSettingsStore.getState().setGridSize(invalidGridSize);
+		expect(useGameSettingsStore.getState().gridSize).toBe(GRID_SIZES[0]); // Default value should remain unchanged
 	});
 });
