@@ -1,0 +1,12 @@
+.card {
+	padding: var(--user-padding-sm);
+	border-radius: 0.5rem;
+	background: var(--user-light);
+	width: 500px;
+}
+
+@media screen and (min-width: 600px) {
+	.card {
+		padding: var(--user-padding-md);
+	}
+}
