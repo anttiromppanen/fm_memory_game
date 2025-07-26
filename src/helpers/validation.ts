@@ -1,4 +1,3 @@
-import type { IconThemeType } from "../const/const";
 import { errorLogger } from "./logger";
 
 /** numOfPlayers variable is compared to validation set of all possible players */
@@ -15,9 +14,22 @@ export const isValidNumOfPlayers = (
 	return true;
 };
 
+export const isValidPlayer = (
+	player: string,
+	playerValidationSet: Set<string>,
+) => {
+	if (!playerValidationSet.has(player)) {
+		errorLogger(
+			`Invalid player: ${player}. Must be one of: ${Array.from(playerValidationSet).join(", ")}.`,
+		);
+		return false;
+	}
+	return true;
+};
+
 /** theme variable is compared to validation set of all possible themes */
 export const isValidIconTheme = (
-	theme: IconThemeType,
+	theme: string,
 	themeValidationSet: Set<string>,
 ) => {
 	if (!themeValidationSet.has(theme)) {
