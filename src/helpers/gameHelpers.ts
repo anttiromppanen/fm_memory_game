@@ -50,8 +50,8 @@ export const create2dTuplesList = (gridSize: number): [number, number][] => {
 	}
 
 	const tuples: [number, number][] = [];
-	for (let i = 0; i < gridSize; i++) {
-		for (let j = 0; j < gridSize; j++) {
+	for (let i = 0; i < gridSizeHelper; i++) {
+		for (let j = 0; j < gridSizeHelper; j++) {
 			tuples.push([i, j]);
 		}
 	}
