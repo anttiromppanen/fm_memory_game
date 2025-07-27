@@ -6,12 +6,6 @@
 	color: var(--user-dark);
 }
 
-.themeButtonsContainer {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 1rem;
-}
-
 .form label span {
 	position: relative;
 	display: inline-block;
