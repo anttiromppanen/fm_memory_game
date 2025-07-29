@@ -14,6 +14,7 @@ export const isValidNumOfPlayers = (
 	return true;
 };
 
+/** player variable is compared to validation set of all possible players */
 export const isValidPlayer = (
 	player: string,
 	playerValidationSet: Set<string>,
@@ -55,6 +56,7 @@ export const isValidGridSize = (
 	return true;
 };
 
+/** gameState variable is compared to validation set of all possible gameStates */
 export const isValidGameState = (
 	gameState: string,
 	gameStateValidationSet: Set<string>,

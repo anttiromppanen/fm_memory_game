@@ -1,9 +1,12 @@
-import StartView from "./views/StartView/StartView";
+import useGameStateStore from "./store/gameStateStore";
+import SetupView from "./views/SetupView/SetupView";
 
 function App() {
+	const { gameState } = useGameStateStore();
+	console.log(gameState);
 	return (
 		<main>
-			<StartView />
+			<SetupView />
 		</main>
 	);
 }

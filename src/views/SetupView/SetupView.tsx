@@ -1,8 +1,8 @@
 import Card from "../../components/Card";
 import Container from "../../components/Container";
-import styles from "./StartView.module.css";
-import StartViewFieldset from "./StartViewFieldset";
-import StartViewRadio from "./StartViewRadio";
+import styles from "./SetupView.module.css";
+import SetupViewFieldset from "./SetupViewFieldset";
+import SetupViewRadio from "./SetupViewRadio";
 
 function StartView() {
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -21,50 +21,50 @@ function StartView() {
 			<h1 className={styles.heading}>memory</h1>
 			<Card>
 				<form action="" className={styles.form} onSubmit={handleSubmit}>
-					<StartViewFieldset heading="Select theme">
-						<StartViewRadio
+					<SetupViewFieldset heading="Select theme">
+						<SetupViewRadio
 							name="theme"
 							id="theme-numbers"
 							value="numbers"
 							text="Numbers"
 							defaultChecked
 						/>
-						<StartViewRadio
+						<SetupViewRadio
 							name="theme"
 							id="theme-icons"
 							value="icons"
 							text="Icons"
 						/>
-					</StartViewFieldset>
+					</SetupViewFieldset>
 
-					<StartViewFieldset heading="Number of Players">
-						<StartViewRadio
+					<SetupViewFieldset heading="Number of Players">
+						<SetupViewRadio
 							name="players"
 							id="players-1"
 							value={1}
 							text="1"
 							defaultChecked
 						/>
-						<StartViewRadio name="players" id="players-2" value={2} text="2" />
-						<StartViewRadio name="players" id="players-3" value={3} text="3" />
-						<StartViewRadio name="players" id="players-4" value={4} text="4" />
-					</StartViewFieldset>
+						<SetupViewRadio name="players" id="players-2" value={2} text="2" />
+						<SetupViewRadio name="players" id="players-3" value={3} text="3" />
+						<SetupViewRadio name="players" id="players-4" value={4} text="4" />
+					</SetupViewFieldset>
 
-					<StartViewFieldset heading="Grid Size">
-						<StartViewRadio
+					<SetupViewFieldset heading="Grid Size">
+						<SetupViewRadio
 							name="grid-size"
 							id="grid-size-4"
 							value={4}
 							text="4x4"
 							defaultChecked
 						/>
-						<StartViewRadio
+						<SetupViewRadio
 							name="grid-size"
 							id="grid-size-6"
 							value={6}
 							text="6x6"
 						/>
-					</StartViewFieldset>
+					</SetupViewFieldset>
 
 					<button type="submit">Start Game</button>
 				</form>

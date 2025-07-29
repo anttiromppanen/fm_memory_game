@@ -1,4 +1,4 @@
-import styles from "./StartViewFieldset.module.css";
+import styles from "./SetupViewFieldset.module.css";
 
 interface StartViewRadioProps {
 	heading: string;
