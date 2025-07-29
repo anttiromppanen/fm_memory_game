@@ -1,6 +1,7 @@
 import Card from "../../components/Card";
 import Container from "../../components/Container";
 import useGameStateStore from "../../store/gameStateStore";
+import usePairGuessStateStore from "../../store/pairGuessStateStore";
 import styles from "./SetupView.module.css";
 import SetupViewFieldset from "./SetupViewFieldset";
 import SetupViewRadio from "./SetupViewRadio";
@@ -8,6 +9,7 @@ import SetupViewRadio from "./SetupViewRadio";
 function StartView() {
 	const { updateGameState, initializeGameScore, initializeGameBoard } =
 		useGameStateStore();
+	const { initializePairGuessState } = usePairGuessStateStore();
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -20,6 +22,7 @@ function StartView() {
 		updateGameState("playing");
 		initializeGameScore(players);
 		initializeGameBoard(gridSize);
+		initializePairGuessState(gridSize);
 	};
 
 	return (

@@ -4,16 +4,21 @@ interface GameGridButtonProps {
 	rowI: number;
 	colJ: number;
 	value: number;
-	playerGuesses: string[];
-	handleOnClick: (i: number, j: number) => void;
+	playerGuesses: number[][];
+	handleOnClick: (i: number, j: number, value: number) => void;
 }
 
-function DefaultButton({ rowI, colJ, handleOnClick }: GameGridButtonProps) {
+function DefaultButton({
+	rowI,
+	colJ,
+	value,
+	handleOnClick,
+}: GameGridButtonProps) {
 	return (
 		<button
 			type="button"
 			key={crypto.randomUUID()}
-			onClick={() => handleOnClick(rowI, colJ)}
+			onClick={() => handleOnClick(rowI, colJ, value)}
 		/>
 	);
 }
@@ -37,10 +42,11 @@ function GameGridButton({
 	playerGuesses,
 	handleOnClick,
 }: GameGridButtonProps) {
-	const coordinatesAsString = `${rowI}${colJ}`;
+	const guessIsIncluded = playerGuesses.find(
+		([i, j, _]) => rowI === i && colJ === j,
+	);
 
-	if (playerGuesses.includes(coordinatesAsString))
-		return <ActiveGuessButton value={value} />;
+	if (guessIsIncluded) return <ActiveGuessButton value={value} />;
 
 	return (
 		<DefaultButton
