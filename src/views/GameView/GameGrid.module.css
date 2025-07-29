@@ -4,6 +4,15 @@
 	gap: 10px;
 }
 
-.gameGridRow {
-	display: contents;
+.gameGrid button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	width: 120px;
+	height: 120px;
+	background-color: var(--user-dark);
+	border-radius: 100%;
+	color: var(--user-light);
+	font-size: 1rem;
 }

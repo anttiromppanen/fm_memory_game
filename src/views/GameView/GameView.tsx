@@ -5,7 +5,7 @@ function GameView() {
 	return (
 		<Container>
 			<h1>Game View</h1>
-			<GameGrid gridSize={4} />
+			<GameGrid />
 		</Container>
 	);
 }
