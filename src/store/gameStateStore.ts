@@ -1,19 +1,31 @@
 import { create } from "zustand";
 import {
+	GAME_STATES_SET,
 	type GameStateType,
 	MAX_PLAYERS,
 	PLAYERS_SET,
 	type PlayersType,
 } from "../const/const";
-import { isValidNumOfPlayers, isValidPlayer } from "../helpers/validation";
+import {
+	create2dTuplesList,
+	initialize2dGameBoard,
+	setGameBoard,
+} from "../helpers/gameHelpers";
+import {
+	isValidGameState,
+	isValidGridSize,
+	isValidNumOfPlayers,
+	isValidPlayer,
+} from "../helpers/validation";
 
 interface IGameStateStore {
 	gameState: GameStateType;
 	gameScore: Partial<Record<PlayersType, number>>;
-	gameBoard: string[][];
+	gameBoard: number[][];
 
+	updateGameState: (newState: GameStateType) => void;
+	initializeGameBoard: (gridSize: number) => void;
 	initializeGameScore: (numOfPlayers: number) => void;
-	resetGameState: () => void;
 	updatePlayerScore: (player: PlayersType) => void;
 }
 
@@ -22,7 +34,26 @@ const useGameStateStore = create<IGameStateStore>((set, get) => ({
 	gameScore: { player1: 0 },
 	gameBoard: [],
 
-	resetGameState: () => set({ gameScore: { player1: 0 } }),
+	updateGameState: (newState: GameStateType) => {
+		if (isValidGameState(newState, GAME_STATES_SET)) {
+			set({ gameState: newState });
+		}
+	},
+
+	initializeGameBoard: (gridSize: number) => {
+		let gridSizeHelper = gridSize;
+		if (!isValidGridSize) gridSizeHelper = 4; // Default to 4 if invalid
+
+		const emptyBoard = initialize2dGameBoard(gridSizeHelper);
+		const tuplesList = create2dTuplesList(gridSizeHelper);
+		const filledBoard = setGameBoard(emptyBoard, tuplesList);
+
+		if (!filledBoard) {
+			throw new Error("Failed to initialize game board.");
+		}
+
+		set({ gameBoard: filledBoard });
+	},
 
 	initializeGameScore: (numOfPlayers: number) => {
 		if (!isValidNumOfPlayers(numOfPlayers, MAX_PLAYERS)) {

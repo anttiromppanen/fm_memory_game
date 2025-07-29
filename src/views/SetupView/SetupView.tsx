@@ -1,19 +1,25 @@
 import Card from "../../components/Card";
 import Container from "../../components/Container";
+import useGameStateStore from "../../store/gameStateStore";
 import styles from "./SetupView.module.css";
 import SetupViewFieldset from "./SetupViewFieldset";
 import SetupViewRadio from "./SetupViewRadio";
 
 function StartView() {
+	const { updateGameState, initializeGameScore, initializeGameBoard } =
+		useGameStateStore();
+
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const formData = new FormData(event.currentTarget);
 		const theme = formData.get("theme") as string;
 		const players = parseInt(formData.get("players") as string, 10);
 		const gridSize = parseInt(formData.get("grid-size") as string, 10);
-		console.log(
-			`Starting game with theme: ${theme}, players: ${players}, grid size: ${gridSize}`,
-		);
+
+		// Update game state and initialize scores
+		updateGameState("playing");
+		initializeGameScore(players);
+		initializeGameBoard(gridSize);
 	};
 
 	return (

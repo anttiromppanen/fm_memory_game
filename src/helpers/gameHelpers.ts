@@ -59,11 +59,23 @@ export const create2dTuplesList = (gridSize: number): [number, number][] => {
 	return fisherYatesShuffle(tuples); // Shuffle the tuples to randomize their order
 };
 
+/**
+ * Creates the final game board
+ * @param board - The 2D game board to be filled with pairs of numbers.
+ * @param tuplesList - A shuffled list of tuples representing coordinates in the grid.
+ * @returns The modified board with pairs of numbers filled in.
+ */
 export const setGameBoard = (
 	board: number[][],
 	tuplesList: [number, number][],
 ) => {
 	let i = 0;
+
+	if (tuplesList.length % 2 !== 0) {
+		throw new Error("Tuples list must have an even number of elements.");
+	}
+
+	// Every value is set to two coordinates in the board
 	while (tuplesList.length > 1) {
 		const first = tuplesList.shift() as [number, number];
 		const second = tuplesList.shift() as [number, number];
