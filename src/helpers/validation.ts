@@ -54,3 +54,16 @@ export const isValidGridSize = (
 	}
 	return true;
 };
+
+export const isValidGameState = (
+	gameState: string,
+	gameStateValidationSet: Set<string>,
+): boolean => {
+	if (!gameStateValidationSet.has(gameState)) {
+		errorLogger(
+			`Invalid game state: ${gameState}. Must be one of: ${Array.from(gameStateValidationSet).join(", ")}.`,
+		);
+		return false;
+	}
+	return true;
+};

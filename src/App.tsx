@@ -1,4 +1,4 @@
-import StartView from "./components/StartView/StartView";
+import StartView from "./views/StartView/StartView";
 
 function App() {
 	return (

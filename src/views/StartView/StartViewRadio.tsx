@@ -1,9 +1,7 @@
-import type { IconThemeType } from "../../const/const";
-
 interface StartViewRadioProps {
 	name: string;
 	id: string;
-	value: string;
+	value: string | number;
 	text: string;
 	defaultChecked?: boolean;
 }

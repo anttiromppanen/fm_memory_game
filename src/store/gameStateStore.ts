@@ -1,8 +1,14 @@
 import { create } from "zustand";
-import { MAX_PLAYERS, PLAYERS_SET, type PlayersType } from "../const/const";
+import {
+	type GameStateType,
+	MAX_PLAYERS,
+	PLAYERS_SET,
+	type PlayersType,
+} from "../const/const";
 import { isValidNumOfPlayers, isValidPlayer } from "../helpers/validation";
 
 interface IGameStateStore {
+	gameState: GameStateType;
 	gameScore: Partial<Record<PlayersType, number>>;
 	gameBoard: string[][];
 
@@ -12,6 +18,7 @@ interface IGameStateStore {
 }
 
 const useGameStateStore = create<IGameStateStore>((set, get) => ({
+	gameState: "setup",
 	gameScore: { player1: 0 },
 	gameBoard: [],
 
