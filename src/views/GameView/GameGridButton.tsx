@@ -4,7 +4,7 @@ interface GameGridButtonProps {
 	rowI: number;
 	colJ: number;
 	value: number;
-	playerGuesses: number[][];
+	cellIsGuessed: boolean;
 	guessStateForCell: number;
 	handleOnClick: (i: number, j: number, value: number) => void;
 }
@@ -14,7 +14,7 @@ function DefaultButton({
 	colJ,
 	value,
 	handleOnClick,
-}: Omit<GameGridButtonProps, "guessStateForCell">) {
+}: Omit<GameGridButtonProps, "guessStateForCell" | "cellIsGuessed">) {
 	return (
 		<button
 			type="button"
@@ -53,24 +53,18 @@ function GameGridButton({
 	rowI,
 	colJ,
 	value,
-	playerGuesses,
+	cellIsGuessed,
 	guessStateForCell,
 	handleOnClick,
 }: GameGridButtonProps) {
 	if (guessStateForCell === 1) return <DisabledButton value={value} />;
-
-	const guessIsIncluded = playerGuesses.find(
-		([i, j, _]) => rowI === i && colJ === j,
-	);
-
-	if (guessIsIncluded) return <ActiveGuessButton value={value} />;
+	if (cellIsGuessed) return <ActiveGuessButton value={value} />;
 
 	return (
 		<DefaultButton
 			rowI={rowI}
 			colJ={colJ}
 			value={value}
-			playerGuesses={playerGuesses}
 			handleOnClick={handleOnClick}
 		/>
 	);

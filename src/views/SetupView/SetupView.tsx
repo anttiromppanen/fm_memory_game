@@ -1,5 +1,7 @@
 import Card from "../../components/Card";
 import Container from "../../components/Container";
+import type { IconThemeType } from "../../const/const";
+import useGameSettingsStore from "../../store/gameSettingsStore";
 import useGameStateStore from "../../store/gameStateStore";
 import usePairGuessStateStore from "../../store/pairGuessStateStore";
 import styles from "./SetupView.module.css";
@@ -10,13 +12,19 @@ function StartView() {
 	const { updateGameState, initializeGameScore, initializeGameBoard } =
 		useGameStateStore();
 	const { initializePairGuessState } = usePairGuessStateStore();
+	const { setNumOfPlayers, setGridSize, setIconTheme } = useGameSettingsStore();
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const formData = new FormData(event.currentTarget);
-		const theme = formData.get("theme") as string;
+		const theme = formData.get("theme") as IconThemeType;
 		const players = parseInt(formData.get("players") as string, 10);
 		const gridSize = parseInt(formData.get("grid-size") as string, 10);
+
+		// Set game settings store
+		setIconTheme(theme);
+		setNumOfPlayers(players);
+		setGridSize(gridSize);
 
 		// Update game state and initialize scores
 		updateGameState("playing");

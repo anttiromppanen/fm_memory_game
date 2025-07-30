@@ -46,13 +46,17 @@ function GameGrid() {
 			{gameBoard.map((row, i) =>
 				row.map((cell, j) => {
 					const guessStateForCell = getGuessStateByCell(i, j) as number;
+					const cellIsGuessed = playerGuesses.some(
+						([guessI, guessJ, _]) => guessI === i && guessJ === j,
+					);
+
 					return (
 						<GameGridButton
 							key={crypto.randomUUID()}
 							rowI={i}
 							colJ={j}
 							value={cell}
-							playerGuesses={playerGuesses}
+							cellIsGuessed={cellIsGuessed}
 							guessStateForCell={guessStateForCell}
 							handleOnClick={handlePlayerGuess}
 						/>

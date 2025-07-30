@@ -3,7 +3,7 @@ import GameView from "./views/GameView/GameView";
 import SetupView from "./views/SetupView/SetupView";
 
 function App() {
-	const { gameState, gameBoard, gameScore } = useGameStateStore();
+	const { gameState } = useGameStateStore();
 
 	const viewSelector = () => {
 		switch (gameState) {
