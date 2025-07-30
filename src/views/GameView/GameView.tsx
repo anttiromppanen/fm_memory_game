@@ -4,7 +4,7 @@ import usePairGuessStateStore from "../../store/pairGuessStateStore";
 import GameGrid from "./GameGrid";
 
 function GameView() {
-	const { guessedPairsTotal } = usePairGuessStateStore();
+	const { numOfGuesses } = usePairGuessStateStore();
 
 	return (
 		<Container>
@@ -12,7 +12,7 @@ function GameView() {
 			<GameGrid />
 			<CountdownTimer />
 			<div>
-				<span>{guessedPairsTotal}</span>
+				<span>{numOfGuesses}</span>
 			</div>
 		</Container>
 	);

@@ -7,8 +7,9 @@ import GameGridButton from "./GameGridButton";
 
 function GameGrid() {
 	const { gameBoard } = useGameStateStore();
-	const { addGuessedPair, getGuessStateByCell } = usePairGuessStateStore();
-	const { gridSize } = useGameSettingsStore();
+	const { addGuessedPair, getGuessStateByCell, incrementNumOfGuesses } =
+		usePairGuessStateStore();
+	const { gridSize, numOfPlayers } = useGameSettingsStore();
 
 	// supposed to hold the 2 guesses by a player
 	const [playerGuesses, setPlayerGuesses] = useState<number[][]>([]); // [i, j, value]
@@ -18,7 +19,7 @@ function GameGrid() {
 			playerGuesses.length === 2 &&
 			playerGuesses[0][2] === playerGuesses[1][2] // check if first & second guess values are equal
 		) {
-			// Pair found successfull
+			// Pair found successfully
 			const [firstGuessI, firstGuessJ, _firstValue] = playerGuesses[0];
 			const [secondGuessI, secondGuessJ, _secondValue] = playerGuesses[1];
 			addGuessedPair(firstGuessI, firstGuessJ, secondGuessI, secondGuessJ);
@@ -26,6 +27,7 @@ function GameGrid() {
 	}, [playerGuesses, addGuessedPair]);
 
 	const handlePlayerGuess = (i: number, j: number, value: number) => {
+		// Handle cases where same cell is clicked and guesses can't go beyond 2
 		if (playerGuesses.length >= 2) return;
 		if (
 			playerGuesses.length > 0 &&
@@ -33,6 +35,11 @@ function GameGrid() {
 			playerGuesses[0][1] === j
 		)
 			return;
+
+		// Num of guesses counter only for singleplayer mode
+		if (numOfPlayers === 1) {
+			incrementNumOfGuesses(numOfPlayers);
+		}
 
 		if (playerGuesses.length === 0)
 			setPlayerGuesses((state) => [...state, [i, j, value]]);

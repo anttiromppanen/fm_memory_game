@@ -22,7 +22,6 @@ interface IGameStateStore {
 	gameState: GameStateType;
 	gameScore: Partial<Record<PlayersType, number>>;
 	gameBoard: number[][];
-	timer: number;
 
 	updateGameState: (newState: GameStateType) => void;
 	initializeGameBoard: (gridSize: number) => void;
@@ -34,7 +33,6 @@ const useGameStateStore = create<IGameStateStore>((set, get) => ({
 	gameState: "setup",
 	gameScore: { player1: 0 },
 	gameBoard: [],
-	timer: Infinity,
 
 	updateGameState: (newState: GameStateType) => {
 		if (isValidGameState(newState, GAME_STATES_SET)) {

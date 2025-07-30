@@ -7,10 +7,12 @@ import { isValidGridSize } from "../helpers/validation";
 interface IPairGuessStateStore {
 	pairGuessState: number[][];
 	guessedPairsTotal: number;
+	numOfGuesses: number;
 
 	initializePairGuessState: (gridSize: number) => void;
 	getGuessStateByCell: (i: number, j: number) => number | undefined;
 	addGuessedPair: (i1: number, j1: number, i2: number, j2: number) => void;
+	incrementNumOfGuesses: (numOfPlayers: number) => void;
 }
 
 function isOutOfBounds(i: number, j: number, guessArray: number[][]) {
@@ -20,6 +22,7 @@ function isOutOfBounds(i: number, j: number, guessArray: number[][]) {
 const usePairGuessStateStore = create<IPairGuessStateStore>((set, get) => ({
 	pairGuessState: [],
 	guessedPairsTotal: 0,
+	numOfGuesses: 0,
 
 	initializePairGuessState: (gridSize: number) => {
 		let gridSizeHelper = gridSize;
@@ -61,6 +64,12 @@ const usePairGuessStateStore = create<IPairGuessStateStore>((set, get) => ({
 				guessedPairsTotal: state.guessedPairsTotal + 1,
 			};
 		});
+	},
+
+	incrementNumOfGuesses: (numOfPlayers: number) => {
+		// Total guesses only shown  on singleplayer mode
+		if (numOfPlayers > 1) return;
+		set((state) => ({ numOfGuesses: state.numOfGuesses + 1 }));
 	},
 }));
 
