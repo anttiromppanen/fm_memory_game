@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useGameSettingsStore from "../../store/gameSettingsStore";
 import useGameStateStore from "../../store/gameStateStore";
 import usePairGuessStateStore from "../../store/pairGuessStateStore";
 import styles from "./GameGrid.module.css";
@@ -7,6 +8,7 @@ import GameGridButton from "./GameGridButton";
 function GameGrid() {
 	const { gameBoard } = useGameStateStore();
 	const { addGuessedPair, getGuessStateByCell } = usePairGuessStateStore();
+	const { gridSize } = useGameSettingsStore();
 
 	// supposed to hold the 2 guesses by a player
 	const [playerGuesses, setPlayerGuesses] = useState<number[][]>([]); // [i, j, value]
@@ -42,7 +44,9 @@ function GameGrid() {
 	};
 
 	return (
-		<div className={styles.gameGrid}>
+		<div
+			className={`${styles.gameGrid} ${gridSize === 4 ? styles.gameGridFourCols : styles.gameGridSixCols}`}
+		>
 			{gameBoard.map((row, i) =>
 				row.map((cell, j) => {
 					const guessStateForCell = getGuessStateByCell(i, j) as number;

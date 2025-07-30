@@ -1,7 +1,14 @@
 .gameGrid {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
 	gap: 10px;
+}
+
+.gameGridFourCols {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.gameGridSixCols {
+	grid-template-columns: repeat(6, 1fr);
 }
 
 .gameGrid button {
