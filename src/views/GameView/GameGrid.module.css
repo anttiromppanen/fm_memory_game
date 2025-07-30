@@ -13,6 +13,12 @@
 	height: 120px;
 	background-color: var(--user-dark);
 	border-radius: 100%;
+	border: none;
 	color: var(--user-light);
 	font-size: 1rem;
+}
+
+.gameGrid button:disabled {
+	background: var(--user-light-blue) !important;
+	cursor: default;
 }

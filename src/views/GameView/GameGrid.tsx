@@ -7,19 +7,18 @@ import GameGridButton from "./GameGridButton";
 function GameGrid() {
 	const { gameBoard } = useGameStateStore();
 	const { addGuessedPair, getGuessStateByCell } = usePairGuessStateStore();
+
+	// supposed to hold the 2 guesses by a player
 	const [playerGuesses, setPlayerGuesses] = useState<number[][]>([]); // [i, j, value]
 
 	useEffect(() => {
 		if (
 			playerGuesses.length === 2 &&
-			playerGuesses[0][2] === playerGuesses[1][2]
+			playerGuesses[0][2] === playerGuesses[1][2] // check if first & second guess values are equal
 		) {
-			addGuessedPair(
-				playerGuesses[0][0],
-				playerGuesses[0][1],
-				playerGuesses[1][0],
-				playerGuesses[1][1],
-			);
+			const [firstGuessI, firstGuessJ, _firstValue] = playerGuesses[0];
+			const [secondGuessI, secondGuessJ, _secondValue] = playerGuesses[1];
+			addGuessedPair(firstGuessI, firstGuessJ, secondGuessI, secondGuessJ);
 		}
 	}, [playerGuesses, addGuessedPair]);
 
@@ -38,23 +37,27 @@ function GameGrid() {
 			setPlayerGuesses((state) => [...state, [i, j, value]]);
 			setTimeout(() => {
 				setPlayerGuesses([]);
-			}, 500);
+			}, 400);
 		}
 	};
 
 	return (
 		<div className={styles.gameGrid}>
 			{gameBoard.map((row, i) =>
-				row.map((cell, j) => (
-					<GameGridButton
-						key={crypto.randomUUID()}
-						rowI={i}
-						colJ={j}
-						value={cell}
-						playerGuesses={playerGuesses}
-						handleOnClick={handlePlayerGuess}
-					/>
-				)),
+				row.map((cell, j) => {
+					const guessStateForCell = getGuessStateByCell(i, j) as number;
+					return (
+						<GameGridButton
+							key={crypto.randomUUID()}
+							rowI={i}
+							colJ={j}
+							value={cell}
+							playerGuesses={playerGuesses}
+							guessStateForCell={guessStateForCell}
+							handleOnClick={handlePlayerGuess}
+						/>
+					);
+				}),
 			)}
 		</div>
 	);
