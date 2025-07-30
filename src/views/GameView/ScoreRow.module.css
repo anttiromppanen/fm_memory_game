@@ -1,0 +1,10 @@
+.scoreRow {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--user-gap-lg);
+	width: 100%;
+}
+
+.singleplayer {
+	max-width: 500px;
+}

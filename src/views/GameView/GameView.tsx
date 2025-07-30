@@ -1,19 +1,13 @@
 import Container from "../../components/Container";
-import CountdownTimer from "../../components/CountdownTimer";
-import usePairGuessStateStore from "../../store/pairGuessStateStore";
 import GameGrid from "./GameGrid";
+import ScoreRow from "./ScoreRow";
 
 function GameView() {
-	const { numOfGuesses } = usePairGuessStateStore();
-
 	return (
 		<Container>
 			<h1>Game View</h1>
 			<GameGrid />
-			<CountdownTimer />
-			<div>
-				<span>{numOfGuesses}</span>
-			</div>
+			<ScoreRow />
 		</Container>
 	);
 }

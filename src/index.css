@@ -10,13 +10,26 @@
 
 	--user-light: #fdfdfd;
 	--user-dark: #172939;
+	--user-semidark: #7293a6;
 	--user-light-blue: #bccfdb;
+	--user-lighter-blue: #dfe6ec;
 	--user-orange: #fda314;
 
 	--user-padding-sm: 0.5rem;
 	--user-padding-md: 1rem;
 	--user-padding-lg: 1.5rem;
 	--user-padding-xl: 2rem;
+
+	--user-rounded-sm: 0.25rem;
+	--user-rounded-md: 0.5rem;
+	--user-rounded-lg: 0.75rem;
+
+	--user-gap-sm: 0;
+	--user-gap-md: 0.5rem;
+	--user-gap-lg: 1rem;
+
+	--user-semibold: 600;
+	--user-bold: 700;
 }
 
 #root {

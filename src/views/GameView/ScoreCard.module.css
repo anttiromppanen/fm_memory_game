@@ -1,0 +1,33 @@
+.scoreCard {
+	background-color: var(--user-lighter-blue);
+	color: var(--user-dark);
+	border-radius: var(--user-rounded-md);
+	padding: var(--user-padding-md);
+	display: flex;
+	flex-direction: column;
+	gap: var(--user-gap-sm);
+}
+
+.scoreCard dd {
+	padding: 0;
+	margin: 0;
+	font-weight: var(--user-bold);
+}
+
+.scoreCard dt {
+	color: var(--user-semidark);
+	font-weight: var(--user-semibold);
+}
+
+.singleplayer {
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
+.singleplayer dd {
+	font-size: 2rem;
+}
+
+.multiplayer {
+}
