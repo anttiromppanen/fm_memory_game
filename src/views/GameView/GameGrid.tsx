@@ -18,6 +18,7 @@ function GameGrid() {
 			playerGuesses.length === 2 &&
 			playerGuesses[0][2] === playerGuesses[1][2] // check if first & second guess values are equal
 		) {
+			// Pair found successfull
 			const [firstGuessI, firstGuessJ, _firstValue] = playerGuesses[0];
 			const [secondGuessI, secondGuessJ, _secondValue] = playerGuesses[1];
 			addGuessedPair(firstGuessI, firstGuessJ, secondGuessI, secondGuessJ);
