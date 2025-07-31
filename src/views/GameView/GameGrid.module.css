@@ -10,22 +10,3 @@
 .gameGridSixCols {
 	grid-template-columns: repeat(6, 1fr);
 }
-
-.gameGrid button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	width: 120px;
-	height: 120px;
-	background-color: var(--user-dark);
-	border-radius: 100%;
-	border: none;
-	color: var(--user-light);
-	font-size: 1rem;
-}
-
-.gameGrid button:disabled {
-	background: var(--user-light-blue) !important;
-	cursor: default;
-}

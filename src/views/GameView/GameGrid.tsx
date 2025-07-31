@@ -70,6 +70,7 @@ function GameGrid() {
 							value={cell}
 							cellIsGuessed={cellIsGuessed}
 							guessStateForCell={guessStateForCell}
+							gridSize={gridSize}
 							handleOnClick={handlePlayerGuess}
 						/>
 					);

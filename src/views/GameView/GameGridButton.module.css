@@ -1,3 +1,27 @@
 .activeGuessButton {
 	background: var(--user-orange) !important;
 }
+
+.gameGridButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	width: 120px;
+	height: 120px;
+	background-color: var(--user-dark);
+	border-radius: 100%;
+	border: none;
+	color: var(--user-light);
+	font-size: 1rem;
+}
+
+.smallButton {
+	width: 90px;
+	height: 90px;
+}
+
+.gameGridButton:disabled {
+	background: var(--user-light-blue) !important;
+	cursor: default;
+}

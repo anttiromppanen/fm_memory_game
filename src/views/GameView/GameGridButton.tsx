@@ -6,6 +6,15 @@ interface GameGridButtonProps {
 	value: number;
 	cellIsGuessed: boolean;
 	guessStateForCell: number;
+	gridSize: number;
+	handleOnClick: (i: number, j: number, value: number) => void;
+}
+
+interface ButtonProps {
+	rowI: number;
+	colJ: number;
+	value: number;
+	smallButton: boolean;
 	handleOnClick: (i: number, j: number, value: number) => void;
 }
 
@@ -13,35 +22,43 @@ function DefaultButton({
 	rowI,
 	colJ,
 	value,
+	smallButton,
 	handleOnClick,
-}: Omit<GameGridButtonProps, "guessStateForCell" | "cellIsGuessed">) {
+}: ButtonProps) {
 	return (
 		<button
 			type="button"
 			key={crypto.randomUUID()}
 			onClick={() => handleOnClick(rowI, colJ, value)}
+			className={`${styles.gameGridButton} ${smallButton && styles.smallButton}`}
 		/>
 	);
 }
 
-function ActiveGuessButton({ value }: Pick<GameGridButtonProps, "value">) {
+function ActiveGuessButton({
+	value,
+	smallButton,
+}: Pick<ButtonProps, "value" | "smallButton">) {
 	return (
 		<button
 			type="button"
 			key={crypto.randomUUID()}
-			className={styles.activeGuessButton}
+			className={`${styles.gameGridButton} ${styles.activeGuessButton} ${smallButton && styles.smallButton}`}
 		>
 			{value}
 		</button>
 	);
 }
 
-function DisabledButton({ value }: Pick<GameGridButtonProps, "value">) {
+function DisabledButton({
+	value,
+	smallButton,
+}: Pick<ButtonProps, "value" | "smallButton">) {
 	return (
 		<button
 			type="button"
 			key={crypto.randomUUID()}
-			className={styles.activeGuessButton}
+			className={`${styles.gameGridButton} ${styles.activeGuessButton} ${smallButton && styles.smallButton}`}
 			disabled
 		>
 			{value}
@@ -55,16 +72,22 @@ function GameGridButton({
 	value,
 	cellIsGuessed,
 	guessStateForCell,
+	gridSize,
 	handleOnClick,
 }: GameGridButtonProps) {
-	if (guessStateForCell === 1) return <DisabledButton value={value} />;
-	if (cellIsGuessed) return <ActiveGuessButton value={value} />;
+	const isSmallButton = gridSize === 6;
+
+	if (guessStateForCell === 1)
+		return <DisabledButton value={value} smallButton={isSmallButton} />;
+	if (cellIsGuessed)
+		return <ActiveGuessButton value={value} smallButton={isSmallButton} />;
 
 	return (
 		<DefaultButton
 			rowI={rowI}
 			colJ={colJ}
 			value={value}
+			smallButton={isSmallButton}
 			handleOnClick={handleOnClick}
 		/>
 	);
