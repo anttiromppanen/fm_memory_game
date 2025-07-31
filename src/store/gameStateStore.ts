@@ -27,6 +27,10 @@ interface IGameStateStore {
 	initializeGameBoard: (gridSize: number) => void;
 	initializeGameScore: (numOfPlayers: number) => void;
 	updatePlayerScore: (player: PlayersType) => void;
+	resetGameStateWithCurrentSettings: (
+		gridSize: number,
+		numOfPlayers: number,
+	) => void;
 }
 
 const useGameStateStore = create<IGameStateStore>((set, get) => ({
@@ -88,6 +92,15 @@ const useGameStateStore = create<IGameStateStore>((set, get) => ({
 				[player]: (state.gameScore[player] || 0) + 1,
 			},
 		}));
+	},
+
+	resetGameStateWithCurrentSettings: (
+		gridSize: number,
+		numOfPlayers: number,
+	) => {
+		const { initializeGameBoard, initializeGameScore } = get();
+		initializeGameBoard(gridSize);
+		initializeGameScore(numOfPlayers);
 	},
 }));
 

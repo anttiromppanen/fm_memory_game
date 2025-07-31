@@ -15,17 +15,25 @@ interface IPairGuessStateStore {
 	addGuessedPair: (i1: number, j1: number, i2: number, j2: number) => void;
 	incrementNumOfGuesses: (numOfPlayers: number) => void;
 	setTimeHasRanOut: (value: boolean) => void;
+	resetPairGuessState: () => void;
 }
 
 function isOutOfBounds(i: number, j: number, guessArray: number[][]) {
 	return i > guessArray.length - 1 || j > guessArray[i].length - 1;
 }
 
-const usePairGuessStateStore = create<IPairGuessStateStore>((set, get) => ({
+const defaultState = {
 	pairGuessState: [],
 	guessedPairsTotal: 0,
 	numOfGuesses: 0,
 	timeHasRanOut: false,
+};
+
+const usePairGuessStateStore = create<IPairGuessStateStore>((set, get) => ({
+	pairGuessState: defaultState.pairGuessState,
+	guessedPairsTotal: defaultState.guessedPairsTotal,
+	numOfGuesses: defaultState.numOfGuesses,
+	timeHasRanOut: defaultState.timeHasRanOut,
 
 	initializePairGuessState: (gridSize: number) => {
 		let gridSizeHelper = gridSize;
@@ -76,6 +84,14 @@ const usePairGuessStateStore = create<IPairGuessStateStore>((set, get) => ({
 	},
 
 	setTimeHasRanOut: (value: boolean) => set({ timeHasRanOut: value }),
+
+	resetPairGuessState: () =>
+		set({
+			pairGuessState: defaultState.pairGuessState, // THIS IS PROBABLY BUGGED CURRENTLY
+			guessedPairsTotal: defaultState.guessedPairsTotal,
+			numOfGuesses: defaultState.numOfGuesses,
+			timeHasRanOut: defaultState.timeHasRanOut,
+		}),
 }));
 
 export default usePairGuessStateStore;
