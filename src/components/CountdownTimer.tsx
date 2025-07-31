@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Countdown from "react-countdown";
 import usePairGuessStateStore from "../store/pairGuessStateStore";
 import styles from "./CountdownTimer.module.css";
@@ -22,12 +23,13 @@ const renderer = ({
 
 function CountdownTimer() {
 	const { setTimeHasRanOut, timeHasRanOut } = usePairGuessStateStore();
+	const [targetTime] = useState(() => Date.now() + 10_000 * 6 * 2);
 
 	if (timeHasRanOut) return <span className={styles.lastTenSeconds}>0:00</span>;
 
 	return (
 		<Countdown
-			date={Date.now() + 10_000 * 6 * 2}
+			date={targetTime}
 			renderer={renderer}
 			onComplete={() => setTimeHasRanOut(true)}
 		/>
