@@ -1,0 +1,32 @@
+.appBar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin: 1rem 0;
+}
+
+.appBar h1 {
+	line-height: 0;
+	user-select: none;
+}
+
+.appBar nav {
+	display: flex;
+	gap: var(--user-gap-md);
+}
+
+.appBar nav button {
+	border-radius: var(--user-rounded-xl);
+	padding: var(--user-padding-md) var(--user-padding-xl);
+}
+
+.restartButton {
+	background-color: var(--user-orange);
+	color: var(--user-light);
+}
+
+.newGameButton {
+	background-color: var(--user-lighter-blue);
+	color: var(--user-dark);
+}

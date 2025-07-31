@@ -21,7 +21,14 @@ interface IGameStateStore {
 	setNumOfPlayers: (num: number) => void;
 	setIconTheme: (theme: IconThemeType) => void;
 	setGridSize: (size: number) => void;
+	resetGameSettings: () => void;
 }
+
+const defaultState = {
+	numOfPlayers: 1,
+	iconTheme: ICON_THEMES[0],
+	gridSize: GRID_SIZES[0],
+};
 
 const useGameSettingsStore = create<IGameStateStore>((set) => ({
 	numOfPlayers: 1,
@@ -36,6 +43,13 @@ const useGameSettingsStore = create<IGameStateStore>((set) => ({
 
 	setGridSize: (size: number) =>
 		isValidGridSize(size, GRID_SIZES_SET) && set({ gridSize: size }),
+
+	resetGameSettings: () =>
+		set({
+			numOfPlayers: defaultState.numOfPlayers,
+			iconTheme: defaultState.iconTheme,
+			gridSize: defaultState.gridSize,
+		}),
 }));
 
 export default useGameSettingsStore;

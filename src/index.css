@@ -24,6 +24,7 @@
 	--user-rounded-sm: 0.25rem;
 	--user-rounded-md: 0.5rem;
 	--user-rounded-lg: 0.75rem;
+	--user-rounded-xl: 3rem;
 
 	--user-gap-sm: 0;
 	--user-gap-md: 0.5rem;
@@ -86,4 +87,9 @@ fieldset {
 	border: none;
 	margin: 0;
 	padding: 0;
+}
+
+button {
+	border: none;
+	cursor: pointer;
 }
