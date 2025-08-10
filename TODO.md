@@ -9,7 +9,7 @@
 ## 🐛 Bugs
 
 - [ ] Restart doesn't reset timer on single mode
-- [ ] getGuessStateByCell out of bounds after Restart
+- [x] getGuessStateByCell out of bounds after Restart
 
 ## 🎨 Polish
 
