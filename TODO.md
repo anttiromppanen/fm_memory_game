@@ -10,6 +10,7 @@
 
 - [ ] Restart doesn't reset timer on single mode
 - [x] getGuessStateByCell out of bounds after Restart
+- [ ] playerGuesses are not reset when restart is pressed (need to move playerGuesses to global state management)
 
 ## 🎨 Polish
 
@@ -28,3 +29,5 @@
 - [ ] Change fonts
 
 ## 📅 Notes
+
+- [ ] Come up with an idea on how to implement icons theme
